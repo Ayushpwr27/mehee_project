@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <title>HeadGear Simulation  WebApp</title>
+    <style>
+
+      .india_nav{
+          margin: 0;
+          background-color: #bf00ff;
+          padding: 10px 25px;
+          display: flex;
+
+          text-decoration: none;
+
+      }
+
+      .India_link {
+
+          color: #ffff1a;
+          text-decoration: none;
+          font-size: 20px;
+          font-family: sans-serif;
+          padding-right: 50px;
+          font-weight: 700;
+      }
+
+      .India_link:hover{
+      color:#fff;
+      font-size:22px;
+      }
+
+      .display-area{
+        padding: 30px 50px;
+        background-color: bisque;
+        margin: 30px;
+        border-radius: 10px;
+      }
+      .display-area #head-display{
+        text-align: center;
+      }
+
+      .display-area #data-display{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: large;
+
+      }
+      .data-menu{
+        background-color: transparent;
+        border: transparent;
+      }
+      #navbar-brand{
+        margin-left: 40%;
+        text-decoration: none;
+        color: aliceblue;
+        font-size: large;
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+      }
+      #instruction{
+        padding: 10px;
+        text-align: center; 
+        color:#ffff1a;
+        background-color:#bf00ff;
+      }
+    </style>
+
+
+  </head>
+  <body style="background-color:black;">
+
+    <nav class="navbar navbar-light bg-dark">
+        <div class="container">
+          <a id="navbar-brand" href="#">
+            <img src="https://i.postimg.cc/xTKsPZgm/site-logo.jpg" alt="IHS" width="35" height="25">
+        Indian Head-Gear Simulation
+        </a>
+        </div>
+      </nav>
+
+    <h5 id="instruction">Keep your face in the middle of the frame</h5>
+    <div style="justify-content: center; display: flex; margin-top: 30px;"><img src="{{ url_for('video') }}"></div>
+
+    <div class='container text-center'>
+      <form>
+          <a href=# id=choice_selection><button class='btn btn-primary'>Next</button></a>
+      </form>
+    </div>
+    <div class='container text-center'>
+      <p id="demo" style="color:#00ff00;font-size:160%;" > </p>
+    </div>
+{% block content %}
+
+{% endblock %}
+
+<div class="india_nav">
+    <div id="history">
+      <button class="data-menu"><a href="#history" class ="India_link">History</a></button>
+    </div>  
+    <div id="significance">
+      <button class="data-menu"><a href="#Significance" class ="India_link">Significance</a></button>
+    </div>
+    <div id="photos">
+      <button class="data-menu"><a href="#Photos" class ="India_link">Photos</a></button>
+    </div>
+</div>
+
+<div class="display-area">
+  <h1 id="head-display"></h1>
+  <hr>
+  <p id="data-display"></p>
+</div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    -->
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type=text/javascript>
+            var array = ["Blue Turban", "Green Cap", "Red Beanie"];
+            $(function() {
+              $('a#choice_selection').on('click', function(e) {
+              current_index = (current_index + 1) % array.length
+              document.getElementById("demo").innerHTML = array[current_index];
+                e.preventDefault()
+                $.getJSON('/background_process_test',
+                    function(data) {
+                  //do nothing
+                });
+                return false;
+              });
+            });
+    </script>
+    <script>
+      current_index = 0
+      document.getElementById("demo").innerHTML = array[current_index];
+    </script>
+    <script type=text/javascript>
+      let heading = ["Blue Turban", "Green Cap", "Red Beanie"];
+      $(function() {
+        $('a#choice_selection').on('click', function(e) {
+        current_index = (current_index ) % heading.length
+        document.getElementById("head-display").innerHTML = heading[current_index];
+          e.preventDefault()
+          $.getJSON('/background_process_test',
+              function(data) {
+            //do nothing
+          });
+          return false;
+        });
+      });
+    </script>
+    <script>
+      current_index = 0
+      document.getElementById("head-display").innerHTML = heading[current_index];
+    </script>
+    <script type=text/javascript>
+      let dataItem = ["Blue Turban is used by blue man", "Green Cap is hated my pink mans", "Red Beanie is loved among all"];
+      let histDataItem = ["Blue Turban is used by blue man", "Green Cap is hated my pink mans", "Red Beanie is loved among all"];
+      let SignDataItem = ["this Turban is used by blue man", "this Cap is hated my pink mans", "this Beanie is loved among all"];
+      let dataItemPics = ['E:\Indian-Headgear-main\Indian-Headgear-main\blue.png','E:\Indian-Headgear-main\Indian-Headgear-main\green.png','E:\Indian-Headgear-main\Indian-Headgear-main\red.png']
+      
+      
+      $(function() {
+        $('a#choice_selection').on('click', function(e) {
+        current_index = (current_index ) % dataItem.length
+        document.getElementById("data-display").innerHTML = dataItem[current_index];
+          e.preventDefault()
+          $.getJSON('/background_process_test',
+              function(data) {
+            //do nothing
+          });
+          return false;
+        });
+        $('div#history').on('click', function(e) {
+        document.getElementById("data-display").innerHTML = histDataItem[current_index];
+          e.preventDefault()
+          $.getJSON('/background_process_test',
+              function(data) {
+            //do nothing
+          });
+          return false;
+        });
+        $('div#significance').on('click', function(e) {
+        document.getElementById("data-display").innerHTML = SignDataItem[current_index];
+          e.preventDefault()
+          $.getJSON('/background_process_test',
+              function(data) {
+            //do nothing
+          });
+          return false;
+        });
+        $('div#photos').on('click', function(e) {
+        document.getElementById("data-display").innerHTML = dataItemPics[current_index];
+          e.preventDefault()
+          $.getJSON('/background_process_test',
+              function(data) {
+            //do nothing
+          });
+          return false;
+        });
+      });
+    </script>
+    <script>
+      current_index = 0
+      document.getElementById("data-display").innerHTML = dataItem[current_index];
+    </script>
+
+  </body>
+</html>
